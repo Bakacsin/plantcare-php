@@ -1,0 +1,66 @@
+<?php 
+
+	$connect = mysql_connect("mysql","username","password") or die ("Couldn't connect!");
+	mysql_select_db("database") or die ("Couldn't find db");	
+	
+// reading from hyperlink	
+$temp = $_GET['temp'];
+$humy = $_GET['humy'];
+$moisure = $_GET['moisure'];
+$date =date("Y-m-d");
+$time=date("H:i:s");
+
+
+//writing the recent data
+echo "temp:";
+echo $temp;
+echo " humy:";
+echo $humy; 
+echo " moisure:";
+echo $moisure;
+echo " date:";
+echo $date;
+echo " time:";
+echo $time;
+echo "<br>";
+echo "<br>";
+
+//insert data to database
+$querycopy = mysql_query("
+INSERT INTO pero_mts VALUES ('','$temp','$humy','$moisure','$date','$time')
+");
+
+//selects all of data from database
+$querymail=mysql_query("
+	SELECT * 
+	FROM pero_mts
+	ORDER BY id DESC
+	") or die("Query didnt work");	
+	while ($row3=mysql_fetch_assoc($querymail)) 
+		{
+		$id1=$row3['id'];
+		$temp1=$row3['temp'];
+		$humy1=$row3['humy'];
+		$moisure1=$row3['moisure'];
+		$date1=$row3['date'];
+		$time1=$row3['time'];
+
+//shows all of data
+echo "<b>id:</b>";
+echo $id1;		
+echo "<b> temp:</b>";
+echo $temp1;
+echo "<b> humy:</b>";
+echo $humy1; 
+echo "<b> moisure:</b>";
+echo $moisure1;
+echo "<b> date:</b>";
+echo $date1;
+echo "<b> time:</b>";
+echo $time1;
+echo "<br>";
+				
+		
+		
+		}
+?>
