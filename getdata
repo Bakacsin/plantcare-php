@@ -27,13 +27,13 @@ echo "<br>";
 
 //insert data to database
 $querycopy = mysql_query("
-INSERT INTO pero_mts VALUES ('','$temp','$humy','$moisure','$date','$time')
+INSERT INTO table VALUES ('','$temp','$humy','$moisure','$date','$time')
 ");
 
 //selects all of data from database
 $querymail=mysql_query("
 	SELECT * 
-	FROM pero_mts
+	FROM table
 	ORDER BY id DESC
 	") or die("Query didnt work");	
 	while ($row3=mysql_fetch_assoc($querymail)) 
